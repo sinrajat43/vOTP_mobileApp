@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/NavBar.dart';
+import 'package:my_app/TaskDetails.dart';
 
 void main(){
   runApp(MaterialApp(
@@ -261,55 +262,65 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-                height: 67.0,
-                width:MediaQuery.of(context).size.width * 1.0,
-                margin: const EdgeInsets.only(top:20.0,right: 8.0,left: 8.0),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: const Color(0xFFFFFFFF),
-                    boxShadow: const [BoxShadow(
-                      color: Color(0xFF000000),
-                      blurRadius: 1.0,
-                    ),]
-                ),
-              child:ListView(
-                // This next line does the trick.
-                scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  Container(
-                      width: MediaQuery.of(context).size.width * 0.55,
-                      child:
-                      const Center(
-                          child: Text(
-                              "Test Chain Reaction App",
-                              style: TextStyle(
+            GestureDetector(
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => TaskDetails()),
+                );
+
+
+              },
+              child: Container(
+                  height: 67.0,
+                  width:MediaQuery.of(context).size.width * 1.0,
+                  margin: const EdgeInsets.only(top:20.0,right: 8.0,left: 8.0),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: const Color(0xFFFFFFFF),
+                      boxShadow: const [BoxShadow(
+                        color: Color(0xFF000000),
+                        blurRadius: 1.0,
+                      ),]
+                  ),
+                child:ListView(
+                  // This next line does the trick.
+                  scrollDirection: Axis.horizontal,
+                  children: <Widget>[
+                    Container(
+                        width: MediaQuery.of(context).size.width * 0.55,
+                        child:
+                        const Center(
+                            child: Text(
+                                "Test Chain Reaction App",
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    color: Color(0xFF333333),
+                                    fontFamily: 'Roboto',
+                                    fontWeight:FontWeight.bold)
+                            )
+                        )
+                    ),
+                    Container(
+                        width: MediaQuery.of(context).size.width * 0.24,
+                        height:20.0,
+                        margin: const EdgeInsets.only(top:20.0,bottom: 22.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4.0), color: Color(0xFF21A849),
+                        ),
+                        child:
+                        const Center(
+                            child: Text(
+                                "DONE",
+                                style: TextStyle(
                                   fontSize: 14,
-                                  color: Color(0xFF333333),
-                                  fontFamily: 'Roboto',
-                                  fontWeight:FontWeight.bold)
-                          )
-                      )
-                  ),
-                  Container(
-                      width: MediaQuery.of(context).size.width * 0.24,
-                      height:20.0,
-                      margin: const EdgeInsets.only(top:20.0,bottom: 22.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4.0), color: Color(0xFF21A849),
-                      ),
-                      child:
-                      const Center(
-                          child: Text(
-                              "DONE",
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Color(0xFFFFFFFF),
-                                fontFamily: 'Roboto',)
-                          )
-                      )
-                  ),
-                ],
+                                  color: Color(0xFFFFFFFF),
+                                  fontFamily: 'Roboto',)
+                            )
+                        )
+                    ),
+                  ],
+                ),
               ),
             ),
             Container(
