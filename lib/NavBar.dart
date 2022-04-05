@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/LogIssue.dart';
 
 class NavDrawer extends StatelessWidget {
   @override
@@ -29,7 +30,12 @@ class NavDrawer extends StatelessWidget {
               ListTile(
                 contentPadding: EdgeInsets.symmetric(vertical: 10.0),
                 title: Icon(Icons.apps,color: Colors.white,),
-                onTap: () => {},
+                onTap: () => {
+                Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LogIssue()),
+                ),
+                },
               ),
               ListTile(
                 contentPadding: EdgeInsets.symmetric(vertical: 8.0),
