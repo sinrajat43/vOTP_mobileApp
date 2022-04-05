@@ -288,7 +288,7 @@ class TaskDetails extends StatelessWidget {
               ),
 
               Container(
-                  height: 120.0,
+                  height: 130.0,
                   margin: const EdgeInsets.only(top:5.0,left: 8.0,right: 8.0,bottom: 0.0),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5.0),
@@ -453,8 +453,8 @@ class TaskDetails extends StatelessWidget {
                     ],)
               ),
               Container(
-                height: 90.0,
-                margin: const EdgeInsets.only(left: 8.0,right: 8.0,bottom: 9.0),
+                height: 60.0,
+                margin: const EdgeInsets.only(top:12.0,left: 8.0,right: 8.0,bottom: 9.0),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5.0),
                     color: const Color(0xFFFFFFFF),
@@ -471,6 +471,49 @@ class TaskDetails extends StatelessWidget {
                         margin: const EdgeInsets.only(top:4.0,left: 5.0,right: 3.0,bottom: 0.0),
                         child: const Text(
                             "Remarks",
+                            style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xFF333333),
+                                fontFamily: 'Roboto',
+                                fontWeight:FontWeight.bold)
+                        )
+
+                    ),
+                    Container(
+                        margin: const EdgeInsets.only(top:6.0,left: 5.0,right: 3.0,bottom: 0.0),
+                        child: const Text(
+                            "Lorem ipsum dolor sit amet,.",
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Color(0xFF636366),
+                              fontFamily: 'Roboto',
+                            )
+                        )
+                    ),
+
+                  ],
+                ),
+
+              ),
+              Container(
+                height: 60.0,
+                margin: const EdgeInsets.only(top:12.0,left: 8.0,right: 8.0,bottom: 9.0),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5.0),
+                    color: const Color(0xFFFFFFFF),
+                    boxShadow: const [BoxShadow(
+                      color: Color(0xFF000000),
+                      blurRadius: 1.0,
+                    ),]
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+
+                    Container(
+                        margin: const EdgeInsets.only(top:4.0,left: 5.0,right: 3.0,bottom: 0.0),
+                        child: const Text(
+                            "Issue Log List",
                             style: TextStyle(
                                 fontSize: 14,
                                 color: Color(0xFF333333),
