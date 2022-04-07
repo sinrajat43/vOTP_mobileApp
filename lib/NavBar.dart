@@ -22,9 +22,7 @@ class NavDrawer extends StatelessWidget {
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
                   decoration: BoxDecoration(
-                      image: DecorationImage(
-                          //fit: BoxFit.fill,
-                          image: AssetImage('assets/Images/trophy.png'))),
+                      ),
                 ),
               ),
               ListTile(
