@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_app/NavBar.dart';
 import 'package:my_app/main.dart';
+import 'package:my_app/LogIssue.dart';
 
 
 class TaskDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    int _value = 6;
     return Scaffold(
         backgroundColor: Color(0xFFF1F7FE),
         drawer: NavDrawer(),
@@ -287,7 +289,6 @@ class TaskDetails extends StatelessWidget {
                   ),
 
                 ),
-
                 Container(
                     height: 130.0,
                     margin: const EdgeInsets.only(top:5.0,left: 8.0,right: 8.0,bottom: 0.0),
@@ -539,6 +540,101 @@ class TaskDetails extends StatelessWidget {
                   ),
 
                 ),
+                Container(
+                  height: 80.0,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Container(
+                          margin: const EdgeInsets.only(top:10.0,left: 15.0,right: 3.0,bottom: 0.0),
+                          child: const Text(
+                              "Work Percentage",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: Color(0xFF333333),
+                                  fontFamily: 'Roboto',
+                                  fontWeight:FontWeight.bold)
+                          )
+
+                      ),
+                      Container(
+                          margin: const EdgeInsets.only(top:0.0,left: 5.0,right: 3.0,bottom: 0.0),
+                          child: const MyStatefulWidget(),
+
+                      ),
+
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(left: 8.0,right: 8.0,top: 20.0),
+                  height: 40.0,
+                  width:MediaQuery.of(context).size.width * 1.0,
+                  alignment: Alignment.centerRight,
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFFFFFFF),
+                  ),
+                  child:ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: <Widget>[
+
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => LogIssue()),
+                          );
+                        },
+                        child: Container(
+                          width:104.0,
+                          height: 40.0,
+                          margin: const EdgeInsets.only(left:10.0,top:5.0),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Color(0xFF3F8CFF)),
+                            borderRadius: BorderRadius.circular(4.0),
+                          ),
+                          child: const Center(
+                            child:  Text(
+                                "Log an Issue",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Color(0xFF3F8CFF),
+                                  fontFamily: 'Roboto',)
+                            ),
+                          ),
+
+                        ),
+                      ),
+                      Container(
+                          width:MediaQuery.of(context).size.width * 0.30,
+                          height: 40.0,
+                      ),
+                      Container(
+                        width:MediaQuery.of(context).size.width * 0.2,
+                        height: 40.0,
+                        margin: const EdgeInsets.only(top:5.0),
+                        decoration: BoxDecoration(
+                          color: Color(0xFF3F8CFF),
+                          border: Border.all(color: Color(0xFFCBD4DF)),
+                          borderRadius: BorderRadius.circular(4.0),
+                        ),
+                        child: const Center(
+                          child: Text(
+                              "Submit",
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xFFFFFFFF),
+                                fontFamily: 'Roboto',)
+                          ),
+                        ),
+                      ),
+
+                    ],
+
+
+                  ),
+
+                ),
               ],
             ),
           )
@@ -569,3 +665,30 @@ class TaskDetails extends StatelessWidget {
     ); // This trailing comma makes auto-formatting nicer for build methods.
   }
 }
+
+class MyStatefulWidget extends StatefulWidget {
+  const MyStatefulWidget({Key? key}) : super(key: key);
+
+  @override
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+}
+
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  double _currentSliderValue = 20;
+
+  @override
+  Widget build(BuildContext context) {
+    return Slider(
+      value: _currentSliderValue,
+      max: 100,
+      divisions: 5,
+      label: _currentSliderValue.round().toString(),
+      onChanged: (double value) {
+        setState(() {
+          _currentSliderValue = value;
+        });
+      },
+    );
+  }
+}
+
