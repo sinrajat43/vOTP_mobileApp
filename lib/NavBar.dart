@@ -43,7 +43,8 @@ class NavDrawer extends StatelessWidget {
                   Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Projects()),
-                ),},
+                ),
+                },
               ),
               ListTile(
                 contentPadding: EdgeInsets.symmetric(vertical: 8.0),

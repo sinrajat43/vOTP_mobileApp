@@ -1,10 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_app/NavBar.dart';
 import 'package:my_app/TaskDetails.dart';
 import 'dart:ui';
 
 
-class TaskerDashboard extends StatelessWidget {
+class Projects extends StatelessWidget {
   @override
 
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class TaskerDashboard extends StatelessWidget {
         drawer: NavDrawer(),
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.black),
-          title:const Text("Tasker Dashboard",
+          title:const Text("Projects",
             style: TextStyle(
               color: Color(0xFF0C145A),
               fontWeight: FontWeight.bold,
@@ -156,156 +157,92 @@ class TaskerDashboard extends StatelessWidget {
 
                   ),
                   Container(
-                      width:200.0,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFDDE7F1),
-                        borderRadius: BorderRadius.circular(72.0),
-                      ),
-                      child:ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: <Widget>[
-                            Container(
-                              width:97.0,
-                              margin: const EdgeInsets.only(top:0.0),
-                              decoration: BoxDecoration(
-                                color: Color(0xFF387CE1),
-                                borderRadius: BorderRadius.circular(72.0),
-                              ),
-                              child: const Center(
-                                child: Text(
-                                    "Log Issue",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Color(0xFFFFFFFF),
-                                      fontFamily: 'Roboto',)
-                                ),
-                              ),
-
-                            ),
-                            Container(
-                              width:97.0,
-                              margin: const EdgeInsets.only(top:0.0),
-                              decoration: BoxDecoration(
-                                color: Color(0xFFDDE7F1),
-                                borderRadius: BorderRadius.circular(72.0),
-                              ),
-                              child: const Center(
-                                child: Text(
-                                    "Remarks",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Color(0xFF000000),
-                                      fontFamily: 'Roboto',)
-                                ),
-                              ),
-
-                            ),
-                          ]
-                      )
-
-                  ),
-                  Container(
-                    height: 67.0,
+                    height: 20.0,
                     width:MediaQuery.of(context).size.width * 1.0,
                     margin: const EdgeInsets.only(top:20.0,right: 8.0,left: 8.0),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),
                         color: const Color(0xFFFFFFFF),
-                        boxShadow: const [BoxShadow(
-                          color: Color(0xFF000000),
-                          blurRadius: 1.0,
-                        ),]
+
                     ),
-                    child:ListView(
-                      // This next line does the trick.
-                      scrollDirection: Axis.horizontal,
-                      children: <Widget>[
-                        Container(
-                            width: MediaQuery.of(context).size.width * 0.55,
-                            child:
-                            const Center(
-                                child: Text(
-                                    "Google ad rating",
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        color: Color(0xFF333333),
-                                        fontFamily: 'Roboto',
-                                        fontWeight:FontWeight.bold)
-                                )
-                            )
-                        ),
-                        Container(
-                            width: MediaQuery.of(context).size.width * 0.24,
-                            height:20.0,
-                            margin: const EdgeInsets.only(top:20.0,bottom: 22.0),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4.0), color: Color(0xFF4E97D6),
-                            ),
-                            child:
-                            const Center(
-                                child: Text(
-                                    "APPROVED",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Color(0xFFFFFFFF),
-                                      fontFamily: 'Roboto',)
-                                )
-                            )
-                        ),
-                      ],
-                    ),
-                  ),
+                    child: const Text(
+                        "Projects",
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Color(0xFF333333),
+                            fontFamily: 'Roboto',
+                            fontWeight:FontWeight.bold)
+                    )
+
+                  ),//project
                   Container(
-                    height: 67.0,
+                    height: 35.0,
+                    margin: const EdgeInsets.only(top:2.0),
                     width:MediaQuery.of(context).size.width * 1.0,
-                    margin: const EdgeInsets.only(top:20.0,right: 8.0,left: 8.0),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: const Color(0xFFFFFFFF),
-                        boxShadow: const [BoxShadow(
-                          color: Color(0xFF000000),
-                          blurRadius: 1.0,
-                        ),]
+                    decoration: const BoxDecoration(
+                      color: Color(0xFFFFFFFF),
                     ),
                     child:ListView(
-                      // This next line does the trick.
                       scrollDirection: Axis.horizontal,
                       children: <Widget>[
+
                         Container(
-                            width: MediaQuery.of(context).size.width * 0.55,
-                            child:
-                            const Center(
-                                child: Text(
-                                    "Create from react.js",
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        color: Color(0xFF333333),
-                                        fontFamily: 'Roboto',
-                                        fontWeight:FontWeight.bold)
-                                )
-                            )
-                        ),
-                        Container(
-                            width: MediaQuery.of(context).size.width * 0.24,
-                            height:20.0,
-                            margin: const EdgeInsets.only(top:20.0,bottom: 22.0),
+                            width:200.0,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4.0), color: Color(0xFFE8AE40),
+                              color: Color(0xFFDDE7F1),
+                              borderRadius: BorderRadius.circular(72.0),
                             ),
-                            child:
-                            const Center(
-                                child: Text(
-                                    "WIP",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Color(0xFFFFFFFF),
-                                      fontFamily: 'Roboto',)
-                                )
+                            child:ListView(
+                                scrollDirection: Axis.horizontal,
+                                children: <Widget>[
+                                  Container(
+                                    width:97.0,
+                                    margin: const EdgeInsets.only(top:0.0),
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFF387CE1),
+                                      borderRadius: BorderRadius.circular(72.0),
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                          "Log Issue",
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            color: Color(0xFFFFFFFF),
+                                            fontFamily: 'Roboto',)
+                                      ),
+                                    ),
+
+                                  ),
+                                  Container(
+                                    width:97.0,
+                                    margin: const EdgeInsets.only(top:0.0),
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFFDDE7F1),
+                                      borderRadius: BorderRadius.circular(72.0),
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                          "Remarks",
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            color: Color(0xFF000000),
+                                            fontFamily: 'Roboto',)
+                                      ),
+                                    ),
+
+                                  ),
+                                ]
                             )
+
                         ),
+
+
                       ],
+
+
                     ),
                   ),
+
                   GestureDetector(
                     onTap: (){
                       Navigator.push(
@@ -367,57 +304,7 @@ class TaskerDashboard extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    height: 67.0,
-                    width:MediaQuery.of(context).size.width * 1.0,
-                    margin: const EdgeInsets.only(top:20.0,right: 8.0,left: 8.0),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: const Color(0xFFFFFFFF),
-                        boxShadow: const [BoxShadow(
-                          color: Color(0xFF000000),
-                          blurRadius: 1.0,
-                        ),]
-                    ),
-                    child:ListView(
-                      // This next line does the trick.
-                      scrollDirection: Axis.horizontal,
-                      children: <Widget>[
-                        Container(
-                            width: MediaQuery.of(context).size.width * 0.55,
-                            child:
-                            const Center(
-                                child: Text(
-                                    "IOT device Testing",
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        color: Color(0xFF333333),
-                                        fontFamily: 'Roboto',
-                                        fontWeight:FontWeight.bold)
-                                )
-                            )
-                        ),
-                        Container(
-                            width: MediaQuery.of(context).size.width * 0.24,
-                            height:20.0,
-                            margin: const EdgeInsets.only(top:20.0,bottom: 22.0),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4.0), color: Color(0xFF4E97D6),
-                            ),
-                            child:
-                            const Center(
-                                child: Text(
-                                    "APPROVED",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Color(0xFFFFFFFF),
-                                      fontFamily: 'Roboto',)
-                                )
-                            )
-                        ),
-                      ],
-                    ),
-                  ),
+
                   Container(
                     height: 67.0,
                     width:MediaQuery.of(context).size.width * 1.0,
