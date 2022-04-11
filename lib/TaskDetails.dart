@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:my_app/NavBar.dart';
+import 'package:my_app/TaskerDashboard.dart';
 import 'package:my_app/main.dart';
 import 'package:my_app/LogIssue.dart';
 
@@ -51,7 +52,7 @@ class TaskDetails extends StatelessWidget {
                         onTap: (){
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => HomePage()),
+                            MaterialPageRoute(builder: (context) => TaskerDashboard()),
                           );
                         },
 
