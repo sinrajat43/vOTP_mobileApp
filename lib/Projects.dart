@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/NavBar.dart';
 import 'package:my_app/TaskDetails.dart';
+import 'dart:ui';
 
 
 class TaskerDashboard extends StatelessWidget {
-
-
-
   @override
 
   Widget build(BuildContext context) {
@@ -158,6 +156,55 @@ class TaskerDashboard extends StatelessWidget {
 
                   ),
                   Container(
+                      width:200.0,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFDDE7F1),
+                        borderRadius: BorderRadius.circular(72.0),
+                      ),
+                      child:ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: <Widget>[
+                            Container(
+                              width:97.0,
+                              margin: const EdgeInsets.only(top:0.0),
+                              decoration: BoxDecoration(
+                                color: Color(0xFF387CE1),
+                                borderRadius: BorderRadius.circular(72.0),
+                              ),
+                              child: const Center(
+                                child: Text(
+                                    "Log Issue",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFFFFFFFF),
+                                      fontFamily: 'Roboto',)
+                                ),
+                              ),
+
+                            ),
+                            Container(
+                              width:97.0,
+                              margin: const EdgeInsets.only(top:0.0),
+                              decoration: BoxDecoration(
+                                color: Color(0xFFDDE7F1),
+                                borderRadius: BorderRadius.circular(72.0),
+                              ),
+                              child: const Center(
+                                child: Text(
+                                    "Remarks",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF000000),
+                                      fontFamily: 'Roboto',)
+                                ),
+                              ),
+
+                            ),
+                          ]
+                      )
+
+                  ),
+                  Container(
                     height: 67.0,
                     width:MediaQuery.of(context).size.width * 1.0,
                     margin: const EdgeInsets.only(top:20.0,right: 8.0,left: 8.0),
@@ -178,7 +225,7 @@ class TaskerDashboard extends StatelessWidget {
                             child:
                             const Center(
                                 child: Text(
-                                    "Build a responsive react App",
+                                    "Google ad rating",
                                     style: TextStyle(
                                         fontSize: 14,
                                         color: Color(0xFF333333),
@@ -447,7 +494,6 @@ class TaskerDashboard extends StatelessWidget {
                   icon: Icon(Icons.stacked_bar_chart),
                   label:""
               ),
-
               BottomNavigationBarItem(
                   icon: Icon(Icons.person),
                   label:""
