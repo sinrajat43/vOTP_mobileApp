@@ -158,7 +158,7 @@ class LogIssue extends StatelessWidget {
 
 
                   ),
-                ),
+                ),//
                 Container(
                   margin: const EdgeInsets.only(left: 8.0,right: 8.0,top: 20.0),
                   height: 70.0,

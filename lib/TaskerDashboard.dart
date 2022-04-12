@@ -4,6 +4,9 @@ import 'package:my_app/TaskDetails.dart';
 
 
 class TaskerDashboard extends StatelessWidget {
+
+
+
   @override
 
   Widget build(BuildContext context) {
@@ -444,6 +447,7 @@ class TaskerDashboard extends StatelessWidget {
                   icon: Icon(Icons.stacked_bar_chart),
                   label:""
               ),
+
               BottomNavigationBarItem(
                   icon: Icon(Icons.person),
                   label:""
