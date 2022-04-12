@@ -578,7 +578,6 @@ class TaskDetails extends StatelessWidget {
                   child:ListView(
                     scrollDirection: Axis.horizontal,
                     children: <Widget>[
-
                       GestureDetector(
                         onTap: (){
                           Navigator.push(
@@ -619,6 +618,7 @@ class TaskDetails extends StatelessWidget {
                           border: Border.all(color: Color(0xFFCBD4DF)),
                           borderRadius: BorderRadius.circular(4.0),
                         ),
+
                         child: const Center(
                           child: Text(
                               "Submit",
@@ -645,22 +645,54 @@ class TaskDetails extends StatelessWidget {
         bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             iconSize: 30.0,
-            items: const <BottomNavigationBarItem>[
+            items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label:""
+                  icon: IconButton(icon:Icon(Icons.home),
+                  onPressed:() {
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LogIssue()),
+                  );
+                  }
+                  ,
+                  ),
+                  label:''
               ),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.insert_drive_file_outlined),
-                  label:""
+                  icon: IconButton(icon:Icon(Icons.insert_drive_file_outlined),
+                  onPressed:() {
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LogIssue()),
+                  );
+                  }
+                  ,
+                  ),
+                  label:''
               ),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.stacked_bar_chart),
-                  label:""
+                icon: IconButton(icon:Icon(Icons.stacked_bar_chart),
+                  onPressed:() {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LogIssue()),
+                    );
+                  }
+                  ,
+                ),
+                  label:''
               ),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
-                  label:""
+                icon: IconButton(icon:Icon(Icons.person),
+                  onPressed:() {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LogIssue()),
+                    );
+                  }
+                  ,
+                ),
+                label:''
               ),
             ])//
     ); // This trailing comma makes auto-formatting nicer for build methods.

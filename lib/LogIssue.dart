@@ -1,9 +1,8 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:my_app/NavBar.dart';
 import 'package:my_app/TaskDetails.dart';
-import 'package:my_app/main.dart';
+import 'package:my_app/Remarks.dart';
 
 
 class LogIssue extends StatelessWidget {
@@ -61,7 +60,6 @@ class LogIssue extends StatelessWidget {
                           width:MediaQuery.of(context).size.width * 0.1,
                           color: Color(0xFFFFFFFF),
                           child: Icon(Icons.arrow_back_ios,color: Colors.black,),
-
                         ),
                       ),
                       Container(
@@ -91,23 +89,31 @@ class LogIssue extends StatelessWidget {
                                 ),
 
                               ),
-                              Container(
-                                width:97.0,
-                                margin: const EdgeInsets.only(top:0.0),
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFDDE7F1),
-                                  borderRadius: BorderRadius.circular(72.0),
-                                ),
-                                child: const Center(
-                                  child: Text(
-                                      "Remarks",
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Color(0xFF000000),
-                                        fontFamily: 'Roboto',)
+                              GestureDetector(
+                                onTap: (){
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => Remarks()),
+                                  );
+                                },
+                                child: Container(
+                                  width:97.0,
+                                  margin: const EdgeInsets.only(top:0.0),
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFDDE7F1),
+                                    borderRadius: BorderRadius.circular(72.0),
                                   ),
-                                ),
+                                  child: const Center(
+                                    child: Text(
+                                        "Remarks",
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Color(0xFF000000),
+                                          fontFamily: 'Roboto',)
+                                    ),
+                                  ),
 
+                                ),
                               ),
                             ]
                           )
