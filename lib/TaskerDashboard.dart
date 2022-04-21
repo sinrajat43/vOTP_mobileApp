@@ -1,15 +1,38 @@
+
 import 'package:flutter/material.dart';
 import 'package:my_app/NavBar.dart';
 import 'package:my_app/TaskDetails.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 
 class TaskerDashboard extends StatelessWidget {
+  List<Task> Tasks=[];
+  Map mapResponse={};
+  Map details={};
+  var Tasker="sinrajat43@gmail.com";
+  getTasks() async{
+    var response = await http.get(Uri.https('virtusauk-dev.outsystemscloud.com', 'CrowdsourcingBackend/rest/Tasks/getTasks'));
+    var jsonData = jsonDecode(response.body);
+    mapResponse=jsonData;
 
-
+    for(int u=0;u<mapResponse["tasklist"].length;u++){
+      details=mapResponse["tasklist"][u];
+      if(details["AdRater"]==Tasker){
+        Task task1= Task ((details["NameOFTask"]==""?"No name":details["NameOFTask"]),(details["Status"]==""?"No Status":details["Status"]));
+        Tasks.add(task1);
+      }
+    }
+    print(Tasks[1].NameOFTask);
+    return Tasks;
+  }
 
   @override
 
   Widget build(BuildContext context) {
+    getTasks();
+    AssetImage image = AssetImage('images/trophy.png');
+    Image trophy = Image(image: image, width: 400, height: 400);
     return Scaffold(
         backgroundColor: Color(0xFFF1F7FE),
         drawer: NavDrawer(),
@@ -32,8 +55,9 @@ class TaskerDashboard extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0), color: const Color(0xFFFFFFFF),
                 boxShadow: const [BoxShadow(
-                  color: Color(0xFF00001A),
-                  blurRadius: 5.0,
+                  color: Color(0x1A000000),
+                  blurRadius: 20.0,
+                  offset: Offset(0.0,4.0),
                 ),]
             ),
             child: SingleChildScrollView(
@@ -50,19 +74,41 @@ class TaskerDashboard extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         children: <Widget>[
                           Container(
+                            alignment:Alignment.centerRight,
                             height:40.0,
                             width:MediaQuery.of(context).size.width * 0.7,
-                            margin: const EdgeInsets.only(left:5.0,top:10.0),
+                            margin: const EdgeInsets.only(left:5.0,top:10.0,right: 0.0),
+                            padding: const EdgeInsets.only(right: 15.0),
                             decoration: BoxDecoration(
                                 color:  Color(0xFFFFFFFF),
+                                border: Border.all(color: Color(0xFFF1F7FE),
+                                                    width:1.0),
                                 borderRadius: BorderRadius.circular(30.0),
                                 boxShadow: const [BoxShadow(
-                                  color: Color(0xFF00001A),
-                                  blurRadius: 5.0,
+                                  color: Color(0x1A000000),
+                                  blurRadius: 0.0,
+                                  offset: Offset(0.0,4.0),
                                 ),]
                             ),
+                            child: Icon(Icons.search,size:30.0)
                           ),
-                          Container()
+                          Container(
+                            width:55.0,
+                            margin: const EdgeInsets.only(top:10.0,left:10.0,right: 0.0),
+                            padding: const EdgeInsets.only(left: 0.0),
+                            decoration: BoxDecoration(
+                                color:  Color(0xFFFFFFFF),
+                                border: Border.all(color: Color(0xFFF1F7FE),
+                                    width:1.0),
+                                borderRadius: BorderRadius.circular(30.0),
+                                boxShadow: const [BoxShadow(
+                                  color: Color(0x1A000000),
+                                  blurRadius: 0.0,
+                                  offset: Offset(0.0,4.0),
+                                ),]
+                            ),
+                            child: Icon(Icons.notifications_none_outlined,size:35.0),
+                          )
                         ]
                     ),
                   ),
@@ -85,8 +131,10 @@ class TaskerDashboard extends StatelessWidget {
                             Container(
                               margin: const EdgeInsets.only(left: 8.0),
                               width: MediaQuery.of(context).size.width * 0.1,
+                              child:Icon(Icons.person,size: 50.0,)
                             ),
                             Container(
+                                margin: const EdgeInsets.only(top: 3.0),
                                 width: MediaQuery.of(context).size.width * 0.3,
                                 child:ListView(
                                     children: <Widget>[
@@ -137,7 +185,7 @@ class TaskerDashboard extends StatelessWidget {
                           children: <Widget>[
                             Container(
                               width: MediaQuery.of(context).size.width * 0.25,
-
+                              child:trophy,
                             ),
                             Container(
                               width: MediaQuery.of(context).size.width * 0.50,
@@ -158,275 +206,91 @@ class TaskerDashboard extends StatelessWidget {
 
                   ),
                   Container(
-                    height: 67.0,
-                    width:MediaQuery.of(context).size.width * 1.0,
-                    margin: const EdgeInsets.only(top:20.0,right: 8.0,left: 8.0),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: const Color(0xFFFFFFFF),
-                        boxShadow: const [BoxShadow(
-                          color: Color(0xFF000000),
-                          blurRadius: 1.0,
-                        ),]
-                    ),
-                    child:ListView(
-                      // This next line does the trick.
-                      scrollDirection: Axis.horizontal,
-                      children: <Widget>[
-                        Container(
-                            width: MediaQuery.of(context).size.width * 0.55,
-                            child:
-                            const Center(
-                                child: Text(
-                                    "Build a responsive react App",
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        color: Color(0xFF333333),
-                                        fontFamily: 'Roboto',
-                                        fontWeight:FontWeight.bold)
-                                )
-                            )
-                        ),
-                        Container(
-                            width: MediaQuery.of(context).size.width * 0.24,
-                            height:20.0,
-                            margin: const EdgeInsets.only(top:20.0,bottom: 22.0),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4.0), color: Color(0xFF4E97D6),
-                            ),
-                            child:
-                            const Center(
-                                child: Text(
-                                    "APPROVED",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Color(0xFFFFFFFF),
-                                      fontFamily: 'Roboto',)
-                                )
-                            )
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    height: 67.0,
-                    width:MediaQuery.of(context).size.width * 1.0,
-                    margin: const EdgeInsets.only(top:20.0,right: 8.0,left: 8.0),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: const Color(0xFFFFFFFF),
-                        boxShadow: const [BoxShadow(
-                          color: Color(0xFF000000),
-                          blurRadius: 1.0,
-                        ),]
-                    ),
-                    child:ListView(
-                      // This next line does the trick.
-                      scrollDirection: Axis.horizontal,
-                      children: <Widget>[
-                        Container(
-                            width: MediaQuery.of(context).size.width * 0.55,
-                            child:
-                            const Center(
-                                child: Text(
-                                    "Create from react.js",
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        color: Color(0xFF333333),
-                                        fontFamily: 'Roboto',
-                                        fontWeight:FontWeight.bold)
-                                )
-                            )
-                        ),
-                        Container(
-                            width: MediaQuery.of(context).size.width * 0.24,
-                            height:20.0,
-                            margin: const EdgeInsets.only(top:20.0,bottom: 22.0),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4.0), color: Color(0xFFE8AE40),
-                            ),
-                            child:
-                            const Center(
-                                child: Text(
-                                    "WIP",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Color(0xFFFFFFFF),
-                                      fontFamily: 'Roboto',)
-                                )
-                            )
-                        ),
-                      ],
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => TaskDetails()),
-                      );
-
-
-                    },
-                    child: Container(
-                      height: 67.0,
+                      height: 500.0,
                       width:MediaQuery.of(context).size.width * 1.0,
-                      margin: const EdgeInsets.only(top:20.0,right: 8.0,left: 8.0),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.0),
-                          color: const Color(0xFFFFFFFF),
-                          boxShadow: const [BoxShadow(
-                            color: Color(0xFF000000),
-                            blurRadius: 1.0,
-                          ),]
-                      ),
-                      child:ListView(
-                        // This next line does the trick.
-                        scrollDirection: Axis.horizontal,
-                        children: <Widget>[
-                          Container(
-                              width: MediaQuery.of(context).size.width * 0.55,
-                              child:
-                              const Center(
-                                  child: Text(
-                                      "Test Chain Reaction App",
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          color: Color(0xFF333333),
-                                          fontFamily: 'Roboto',
-                                          fontWeight:FontWeight.bold)
-                                  )
-                              )
-                          ),
-                          Container(
-                              width: MediaQuery.of(context).size.width * 0.24,
-                              height:20.0,
-                              margin: const EdgeInsets.only(top:20.0,bottom: 22.0),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4.0), color: Color(0xFF21A849),
+                      margin: const EdgeInsets.only(top:20.0),
+                      child:ListView.builder(
+                          itemCount: Tasks.length,
+                          itemBuilder: (BuildContext context,int index){
+                            return GestureDetector(
+                              onTap: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => TaskDetails()),
+                                );
+                              },
+                              child: Container(
+                                height: 67.0,
+                                width:MediaQuery.of(context).size.width * 1.0,
+                                margin: const EdgeInsets.only(top:20.0,right: 8.0,left: 8.0),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    color: const Color(0xFFFFFFFF),
+                                    boxShadow: const [BoxShadow(
+                                      color: Color(0xFF000000),
+                                      blurRadius: 1.0,
+                                    ),]
+                                ),
+                                child:ListView(
+                                  // This next line does the trick.
+                                  scrollDirection: Axis.horizontal,
+                                  children: <Widget>[
+                                    Container(
+                                        width: MediaQuery.of(context).size.width * 0.55,
+                                        child:
+                                        Center(
+                                            child: Text(
+                                                Tasks[index].NameOFTask,
+                                                style: TextStyle(
+                                                    fontSize: 14,
+                                                    color: Color(0xFF333333),
+                                                    fontFamily: 'Roboto',
+                                                    fontWeight:FontWeight.bold)
+                                            )
+                                        )
+                                    ),
+                                    Container(
+                                      width: MediaQuery.of(context).size.width * 0.24,
+                                      height:20.0,
+                                      margin: const EdgeInsets.only(top:20.0,bottom: 22.0),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(4.0), color:
+                                        (Tasks[index].Status=="APPROVED"?Color(0xFF4E97D6):
+                                        Tasks[index].Status=="WIP"?Color(0xFFE8AE40):
+                                        Tasks[index].Status=="DONE"?Color(0xFF21A849):
+                                        Tasks[index].Status=="NEW"?Color(0xFFEE0B5A):Color(0xFF000000)),
+                                      ),
+                                      child:
+                                      Center(
+                                          child: Text(
+                                              Tasks[index].Status,
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                color: (Color(0xFFFFFFFF)),
+                                                fontFamily: 'Roboto',)
+                                          )
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                              child:
-                              const Center(
-                                  child: Text(
-                                      "DONE",
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Color(0xFFFFFFFF),
-                                        fontFamily: 'Roboto',)
-                                  )
-                              )
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    height: 67.0,
-                    width:MediaQuery.of(context).size.width * 1.0,
-                    margin: const EdgeInsets.only(top:20.0,right: 8.0,left: 8.0),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: const Color(0xFFFFFFFF),
-                        boxShadow: const [BoxShadow(
-                          color: Color(0xFF000000),
-                          blurRadius: 1.0,
-                        ),]
-                    ),
-                    child:ListView(
-                      // This next line does the trick.
-                      scrollDirection: Axis.horizontal,
-                      children: <Widget>[
-                        Container(
-                            width: MediaQuery.of(context).size.width * 0.55,
-                            child:
-                            const Center(
-                                child: Text(
-                                    "IOT device Testing",
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        color: Color(0xFF333333),
-                                        fontFamily: 'Roboto',
-                                        fontWeight:FontWeight.bold)
-                                )
-                            )
-                        ),
-                        Container(
-                            width: MediaQuery.of(context).size.width * 0.24,
-                            height:20.0,
-                            margin: const EdgeInsets.only(top:20.0,bottom: 22.0),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4.0), color: Color(0xFF4E97D6),
-                            ),
-                            child:
-                            const Center(
-                                child: Text(
-                                    "APPROVED",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Color(0xFFFFFFFF),
-                                      fontFamily: 'Roboto',)
-                                )
-                            )
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    height: 67.0,
-                    width:MediaQuery.of(context).size.width * 1.0,
-                    margin: const EdgeInsets.only(top:20.0,right: 8.0,left: 8.0),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: const Color(0xFFFFFFFF),
-                        boxShadow: const [BoxShadow(
-                          color: Color(0xFF000000),
-                          blurRadius: 1.0,
-                        ),]
-                    ),
-                    child:ListView(
-                      // This next line does the trick.
-                      scrollDirection: Axis.horizontal,
-                      children: <Widget>[
-                        Container(
-                            width: MediaQuery.of(context).size.width * 0.55,
-                            child:
-                            const Center(
-                                child: Text(
-                                    "Metaverse Ideathon",
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        color: Color(0xFF333333),
-                                        fontFamily: 'Roboto',
-                                        fontWeight:FontWeight.bold)
-                                )
-                            )
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.24,
-                          height:20.0,
-                          margin: const EdgeInsets.only(top:20.0,bottom: 22.0),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4.0), color: Color(0xFF4E97D6),
-                          ),
-                          child:
-                          const Center(
-                              child: Text(
-                                  "APPROVED",
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Color(0xFFFFFFFF),
-                                    fontFamily: 'Roboto',)
-                              )
-                          ),
-                        ),
-                      ],
-                    ),
+                            );
+                            //return ListTile(
+                            //   trailing: Text("GFG",
+                            //   style: TextStyle(
+                            //      color: Colors.green,fontSize: 15),),
+                            //title:Text("List item $index")
+                            //);
+                          }
+                        // This next line does the trick.
+                      )
                   ),
                   Container(
                       height: 2.0,
                       margin: const EdgeInsets.only(top:15.0),
                       color: const Color(0xFFE3E3E3)
                   ),
+
                 ],
               ),
             )
@@ -455,4 +319,9 @@ class TaskerDashboard extends StatelessWidget {
             ])//
     ); // This trailing comma makes auto-formatting nicer for build methods.
   }
+}
+
+class Task{
+  final String NameOFTask, Status;
+  Task(this.NameOFTask,this.Status);
 }

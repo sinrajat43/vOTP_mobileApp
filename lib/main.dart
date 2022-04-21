@@ -6,8 +6,6 @@ import 'package:my_app/TaskerDashboard.dart';
 void main(){
   runApp(MaterialApp(
       title:"Sample App",
-      home: TaskerDashboard(
-
-      )
+      home: TaskerDashboard()
   ));
 }
