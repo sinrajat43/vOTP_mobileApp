@@ -11,7 +11,10 @@ class TaskerDashboard extends StatelessWidget {
   Map mapResponse={};
   Map details={};
   var Tasker="sinrajat43@gmail.com";
+  AssetImage trophyImage=  const AssetImage('images/trophy.png');
+
   getTasks() async{
+    print("In getTask...");
     var response = await http.get(Uri.https('virtusauk-dev.outsystemscloud.com', 'CrowdsourcingBackend/rest/Tasks/getTasks'));
     var jsonData = jsonDecode(response.body);
     mapResponse=jsonData;
@@ -26,19 +29,22 @@ class TaskerDashboard extends StatelessWidget {
     print(Tasks[1].NameOFTask);
     return Tasks;
   }
-
+  //@override
+  //void initState(){
+  //  getTasks();
+  //}
+  //@override
+  //void dispose(){
+  //}
   @override
-
   Widget build(BuildContext context) {
     getTasks();
-    AssetImage image = AssetImage('images/trophy.png');
-    Image trophy = Image(image: image, width: 400, height: 400);
     return Scaffold(
         backgroundColor: Color(0xFFF1F7FE),
         drawer: NavDrawer(),
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.black),
-          title:const Text("Tasker Dashboard",
+          title: const Text("Tasker Dashboard",
             style: TextStyle(
               color: Color(0xFF0C145A),
               fontWeight: FontWeight.bold,
@@ -56,7 +62,7 @@ class TaskerDashboard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10.0), color: const Color(0xFFFFFFFF),
                 boxShadow: const [BoxShadow(
                   color: Color(0x1A000000),
-                  blurRadius: 20.0,
+                  blurRadius: 0.0,
                   offset: Offset(0.0,4.0),
                 ),]
             ),
@@ -185,7 +191,7 @@ class TaskerDashboard extends StatelessWidget {
                           children: <Widget>[
                             Container(
                               width: MediaQuery.of(context).size.width * 0.25,
-                              child:trophy,
+                              child:Image(image:trophyImage, width: 400, height: 400),
                             ),
                             Container(
                               width: MediaQuery.of(context).size.width * 0.50,
@@ -285,12 +291,6 @@ class TaskerDashboard extends StatelessWidget {
                         // This next line does the trick.
                       )
                   ),
-                  Container(
-                      height: 2.0,
-                      margin: const EdgeInsets.only(top:15.0),
-                      color: const Color(0xFFE3E3E3)
-                  ),
-
                 ],
               ),
             )

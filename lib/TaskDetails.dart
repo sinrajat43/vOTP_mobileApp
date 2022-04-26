@@ -4,12 +4,45 @@ import 'package:my_app/NavBar.dart';
 import 'package:my_app/TaskerDashboard.dart';
 import 'package:my_app/main.dart';
 import 'package:my_app/LogIssue.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 
 class TaskDetails extends StatelessWidget {
+
+  List<Task> Tasks=[];
+  Map mapResponse={};
+  Map details={};
+  int TaskId=716;
+  var Tasker="sinrajat43@gmail.com";
+  getTasks() async{
+    var response = await http.get(Uri.https('virtusauk-dev.outsystemscloud.com', 'CrowdsourcingBackend/rest/Tasks/getTasks'));
+    var jsonData = jsonDecode(response.body);
+    mapResponse=jsonData;
+    for(int u=0;u<mapResponse["tasklist"].length;u++){
+      details=mapResponse["tasklist"][u];
+      if(details["AdRater"]==Tasker && details["Id"]==TaskId){
+        Task task1= Task ((details["Id"] ?? 0),
+                          (details["NameOFTask"] ?? "No name"),
+                          (details["Status"] ?? "No Status"),
+                          (details["StartDate"] ?? "No StartDate"),
+                          (details["EndDate"] ?? "No EndDate"),
+                          (details["Priority"] ?? "No Priority"),
+                          (details["WorkPercentage"] ?? 0),
+                          (details["Bucket"] ?? "No Bucket"),
+                          (details["Category"] ?? "No Category"),
+                          (details["Description"] ?? "No Description"),
+                          (details["Remarks"] ?? "No Remarks")
+
+        );
+        return task1;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    int _value = 6;
+    getTasks();
     return Scaffold(
         backgroundColor: Color(0xFFF1F7FE),
         drawer: NavDrawer(),
@@ -68,11 +101,10 @@ class TaskDetails extends StatelessWidget {
 
                           color: Color(0xFFFFFFFF),
                           child:
-                          const Center(
+                           Center(
                             child: Text(
-                                "Test Chain Reaction App",
-
-                                style: TextStyle(
+                                "Testing",
+                                style: const TextStyle(
                                     fontSize: 17,
                                     color: Color(0xFF000000),
                                     fontFamily: 'Roboto',
@@ -725,3 +757,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   }
 }
 
+
+class Task{
+  final String NameOFTask, Status,Priority, StartDate,EndDate, Bucket,Category,Description,Remarks;
+  final int Id,WorkPercentage;
+  Task(this.Id, this.NameOFTask, this.Status, this.StartDate,this.EndDate,
+      this.Priority, this.WorkPercentage,this.Bucket,this.Category,this.Description,this.Remarks);
+}
